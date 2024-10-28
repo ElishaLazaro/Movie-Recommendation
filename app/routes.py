@@ -31,7 +31,7 @@ for file_path in required_files:
 model = joblib.load(model_path)
 selected_features = joblib.load(selected_features_path)
 label_encoders = joblib.load(label_encoders_path)
-le_grade = joblib.load(label_encoder_rating_path)
+le_rating = joblib.load(label_encoder_rating_path)
 
 @routes_bp.route('/test', methods=['GET'])
 def test():
@@ -62,6 +62,6 @@ def predict():
     
     # Make prediction
     prediction_encoded = model.predict(input_array)[0]
-    prediction = le_grade.inverse_transform([prediction_encoded])[0]  # Decode the prediction
+    prediction = le_rating.inverse_transform([prediction_encoded])[0]  # Decode the prediction
     
     return jsonify({'prediction': prediction})
