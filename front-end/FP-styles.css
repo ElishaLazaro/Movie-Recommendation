@@ -1,0 +1,99 @@
+html {
+    scroll-padding-top: 4rem; /* Adjust this value based on your header height */
+    scroll-behavior: smooth;
+}
+
+body {
+    padding-top: 0; /* The spacer div handles this now */
+}
+
+.movie-poster {
+    width: 176px;
+    height: 208px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.movie-poster:hover {
+    transform: scale(1.05);
+}
+
+.poster-error {
+    /* Add styles for failed images if needed */
+    border: 1px solid #ff0000;
+}
+
+#chatbotWidget {
+transition: all 0.3s ease-in-out;
+box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+#chatbotWidget * {
+    color: black;
+}
+
+#closeChatbot {
+    padding: 4px;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+}
+
+#closeChatbot:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.chatbot-option {
+    transition: all 0.2s ease;
+}
+
+.chatbot-option:hover {
+    transform: translateX(5px);
+}
+
+.footer {
+    background-color: #ffffff; /* yellow-400 */
+    color: black;
+    padding: 1rem 0;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem; /* Increased spacing between links and copyright */
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: black;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.dot {
+    margin: 0 0.5rem;
+}
+
+.footer-copyright {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-copyright p {
+    margin: 0;
+    text-align: center;
+}
