@@ -18,42 +18,17 @@
 
     <script>
         const params = new URLSearchParams(document.location.search);
-        const by = params.get("by");
-        let gName = ""
-
-        let fetchString = `/movie?by=${by}`
-
-
-        const filter = {
-            genre: (g) => `&g=${encodeURIComponent(g)}`,
-            rating: (min, max) => `&r_min=${min}&r_max=${max}`,
-            year: (min, max) => `&y_min=${min}&y_max=${max}`,
-        }
-
-
-        if (by != "genre") {
-            const min = params.get("min");
-            const max = params.get("max");
-            fetchString += filter[by](min, max)
-            gName = `${min} - ${max} Movies`
-
-        }
-        else {
-            const g = params.get("g");
-            fetchString += filter[by](g)
-            gName = decodeURIComponent(g)
-            const decoded  = atob(gName)
-            gName = JSON.parse(decoded)
-            gName = gName.join(" | ")
-        }
+        const genreName = params.get("g");
+        console.log(genreName)
 
 
 
-        const recommendedMovies = async (limit, fetchString) => {
+        const genreMovies = async (limit) => {
 
+            const genres = encodeURIComponent(btoa(JSON.stringify([genreName])))
             var movies = ""
 
-            const response = await fetch(fetchString + "&limit=" + limit.toString())
+            const response = await fetch(`/movie?by=genre&limit=${limit}&g=${genres}`)
             const { data } = await response.json()
 
             data.map((movie) => {
@@ -68,10 +43,10 @@
 
 
         document.addEventListener("DOMContentLoaded", function () {
-            document.querySelector("#genre_Name").innerHTML = gName;
+            document.querySelector("#genre_Name").innerHTML = genreName + " Movies";
             (async () => {
 
-                document.querySelector("#movie_genre_collection").innerHTML = await recommendedMovies(40, fetchString)
+                document.querySelector("#movie_genre_collection").innerHTML = await genreMovies(40)
             })()
         });
 
@@ -96,7 +71,7 @@
 
                 <!-- Header with RETURN link -->
                 <div class="text-center">
-                    <a href="index.html" target="_blank" rel="noopener noreferrer"
+                    <a href="index.html" target="_self" rel="noopener noreferrer"
                         class="px-3 py-2 bg-yellow-400 flex items-center justify-center w-40 no-underline">
                         RETURN
                     </a>
@@ -113,6 +88,8 @@
 
         <!-- Add a spacer div to prevent content from jumping up -->
         <div class="h-16"></div> <!-- Adjust this height to match your header height -->
+
+
 
 
         <div class="text-center text-4xl text-white flex flex-col items-center">

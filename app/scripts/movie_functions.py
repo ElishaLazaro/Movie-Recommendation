@@ -8,12 +8,20 @@ from app.data import movie_df as mdf
 movie_df = mdf.get_movie_data()
 
 
-def movie_by_genre(query, limit):
+def movie_by_genre(query, limit, offset=5):
     print(query["g"])
     q_genre = json.loads(b64decode(parse.unquote(query["g"])))
 
+    filtered_movies = movie_df[movie_df["Genre"].isin(q_genre)]
+
+    if filtered_movies.shape[0] > offset:
+        result = filtered_movies.iloc[offset:offset + limit]
+        print(result)
+    else:
+        result = filtered_movies
+
     return (
-        movie_df[movie_df["Genre"].isin(q_genre)].head(limit).to_json(orient="records")
+        result.to_json(orient="records")
     )
 
 
@@ -36,8 +44,7 @@ def movie_by_rating(query, limit):
     q_rating_max = float(query["r_max"])
     
     # Filter the DataFrame for movies within the specified rating range
-    return (
-        movie_df[(movie_df["Rating"] >= q_rating_min) & (movie_df["Rating"] <= q_rating_max)]
+    return ( movie_df[(movie_df["Rating"] >= q_rating_min) & (movie_df["Rating"] <= q_rating_max)]
         .head(limit)
         .to_json(orient="records")
     )

@@ -111,7 +111,6 @@
 
                 const genres = encodeURIComponent(btoa(JSON.stringify(genreName)))
 
-
                 const genre = genreName[0]
 
                 const genreMovies = async () => {
@@ -140,13 +139,11 @@
                                 </div>
 
                             <div class="text-white text-5xl flex gap-x-5 items-center justify-center w-full">
-                                
 
-                                <div class="carousel rounded-box space-x-4 p-4 ">
+                                <div class="carousel rounded-box space-x-4 p-4 overflow-x-scroll">
                                     ${await genreMovies()}
                                 </div>
 
-                                
                             </div>
                         </div>       
                     `
@@ -155,7 +152,7 @@
 
             document.addEventListener("DOMContentLoaded", function () {
                 categories.map((category) => {
-                    genreTempl(16, [category]).then((box) => {
+                    genreTempl(5, [category]).then((box) => {
                         document.querySelector("#categorizedMovies").innerHTML += box
                     })
                 })
@@ -198,7 +195,7 @@
         </div>
         <div id="chatbotMessages" class="h-64 overflow-y-auto p-4 text-black"></div>
         <div class="p-4 border-t">
-            <input type="text" id="userInput" class="w-full p-2 border rounded text-white"
+            <input type="text" id="userInput" class="w-full p-2 border rounded text-white bg-neutral-100"
                 placeholder="Type your message...">
             <button id="sendMessage"
                 class="mt-2 w-full bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-4 rounded">

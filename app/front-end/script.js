@@ -187,7 +187,8 @@ document.addEventListener('DOMContentLoaded', async function () {
         setTimeout(() => {
             let g = genre.trim()
             g = g.split(",")
-            g = encodeURIComponent(btoa(JSON.stringify(g)))
+            const genres = g.map((ge) => ge[0].toUpperCase() + ge.slice(1).toLowerCase())
+            g = encodeURIComponent(btoa(JSON.stringify(genres)))
 
             window.location.href = `recommend.html?by=genre&g=${g}`
         }, 1000 * 2)
