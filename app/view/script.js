@@ -18,31 +18,9 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Optional: Add hover effects for movie posters
-    const moviePosters = document.querySelectorAll('.movie-poster');
-    moviePosters.forEach(poster => {
-        poster.addEventListener('mouseenter', function () {
-            this.style.transform = 'scale(1.05)';
-        });
 
-        poster.addEventListener('mouseleave', function () {
-            this.style.transform = 'scale(1)';
-        });
-    });
 
-    // Optional: Add slider functionality
-    const sliderButtons = document.querySelectorAll('.slider-button');
-    sliderButtons.forEach(button => {
-        button.addEventListener('click', function () {
-            const direction = this.dataset.direction;
-            const container = this.closest('.movie-section').querySelector('.movie-container');
-            const scrollAmount = direction === 'left' ? -220 : 220;
-            container.scrollBy({
-                left: scrollAmount,
-                behavior: 'smooth'
-            });
-        });
-    });
+
 });
 
 

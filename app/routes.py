@@ -72,6 +72,57 @@ def get_movie() -> Response:
         return response
 
 
+@routes_bp.route("/movie/top/rated", methods=["GET"])
+def get_top_rated() -> Response:
+    # instantiate response object
+    response = Response()
+    # set content-type to json
+    response.mimetype = "application/json"
+
+    query = get_query(request)
+    q_limit = int(query["limit"])
+
+    try:
+        # do something...
+
+        df_result = ""
+
+        df_result = movie_functions.movie_most_rated(q_limit)
+
+        if df_result:
+            df_result = json.loads(df_result)
+
+        # end do something...
+
+        # set the status of the response
+        response.status = 200
+        # encode dict to json
+        json_encoded = json.dumps(
+            {
+                "message": "Success on retrieving data",
+                "data": df_result,
+            }
+        )
+        # set the json_encoded to response
+        response.set_data(json_encoded)
+
+        # send the response to the client
+        return response
+
+    except Exception as err:
+        # set the status of the response
+        response.status = 500
+        # encode dict to json
+        json_encoded = json.dumps(
+            {"message": "There was an error.", "error": err.__str__()}
+        )
+        # set the json_encoded to response
+        response.set_data(json_encoded)
+
+        # send the response to the client
+        return response
+
+
 @routes_bp.route("/movie/profile", methods=["GET"])
 def get_movie_profile() -> Response:
     # instantiate response object
