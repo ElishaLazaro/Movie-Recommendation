@@ -1,1 +1,1 @@
-This project is about a movie website with a categorization function and a AI chatbot to help the user find certain movies in a specific categories and was a project for a group of students.
+This project is about a movie website with a categorization function and a AI chatbot to help the user find certain movies in a specific categories and was a project for a group of students. Elisha Lazaro is the head and leader of this group.
